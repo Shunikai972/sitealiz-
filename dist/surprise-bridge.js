@@ -5,6 +5,7 @@
 
   let active = null;
   let launching = false;
+  let savedScrollY = 0;
   let cssReadyPromise = null;
   let modPromise = null;
 
@@ -15,7 +16,7 @@
         const link = document.createElement('link');
         link.id = 'surprise-engine-css';
         link.rel = 'stylesheet';
-        link.href = 'surprise/surprise.css';
+        link.href = 'surprise/surprise.css?v=2';
         link.onload = () => resolve();
         link.onerror = () => resolve();
         document.head.appendChild(link);
@@ -25,7 +26,7 @@
   }
 
   function ensureModule() {
-    if (!modPromise) modPromise = import('./surprise/surprise.js');
+    if (!modPromise) modPromise = import('./surprise/surprise.js?v=2');
     return modPromise;
   }
 
@@ -82,6 +83,7 @@
   async function launch(ev, opts = {}) {
     if (launching || active) return;
     launching = true;
+    savedScrollY = window.scrollY || window.pageYOffset || 0;
 
     if (!opts.skipGestureAudio) unlockGestureAudio();
     fadeOutSiteMedia();
@@ -140,6 +142,11 @@
         active = null;
         host.classList.remove('active');
         document.body.classList.remove('site-hidden', 'site-morph-out');
+        try {
+          window.scrollTo({ top: savedScrollY, behavior: 'instant' });
+        } catch (_) {
+          window.scrollTo(0, savedScrollY);
+        }
         requestAnimationFrame(() => {
           curtain.classList.add('fade');
           setTimeout(() => {

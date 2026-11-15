@@ -20138,51 +20138,51 @@ function td() {
 }
 async function id({ container: s = null, assetBase: t = "", sceneId: e = null, autoStart: n = !1, fromGesture: i = !1, onExit: r = null } = {}) {
   Z.config({ force3D: !0 }), t && Qf(t), document.documentElement.classList.add("surprise-active"), document.body.classList.add("surprise-active");
-  let a = s || document.getElementById("app");
-  a || (a = C("div#app"), document.body.append(a)), a.querySelector("#stage") || (a.id = "app", a.innerHTML = J6), L.attach(a);
-  const o = new l6(a.querySelector("#fx")), l = { stage: L, quality: Pt, audio: P, fx: o, onExit: null };
-  l.director = new c6(l, Z6), window.__app = l, window.gsap = Z, i && !P.ready && P.unlock();
-  const c = a.querySelector("#btn-sound"), h = a.querySelector("#btn-motion"), u = (S) => {
-    S.stopPropagation();
-    const I = !P.muted;
-    P.ready || P.unlock(), P.setMuted(I), c.setAttribute("aria-pressed", String(I)), c.setAttribute("aria-label", I ? "Son coupé" : "Son activé");
+  let a = !1, o = s ? s.id === "app" ? s : s.querySelector("#app") : document.getElementById("app");
+  o || (o = C("div#app"), (s || document.body).append(o), a = !0), o.querySelector("#stage") || (o.innerHTML = J6), L.attach(o);
+  const l = new l6(o.querySelector("#fx")), c = { stage: L, quality: Pt, audio: P, fx: l, onExit: null };
+  c.director = new c6(c, Z6), window.__app = c, window.gsap = Z, i && !P.ready && P.unlock();
+  const h = o.querySelector("#btn-sound"), u = o.querySelector("#btn-motion"), f = (I) => {
+    I.stopPropagation();
+    const G = !P.muted;
+    P.ready || P.unlock(), P.setMuted(G), h.setAttribute("aria-pressed", String(G)), h.setAttribute("aria-label", G ? "Son coupé" : "Son activé");
   };
-  c.addEventListener("click", u), h.setAttribute("aria-pressed", String(Pt.reduced));
-  const f = (S) => {
-    S.stopPropagation(), Pt.setReduced(!Pt.reduced), h.setAttribute("aria-pressed", String(Pt.reduced));
+  h.addEventListener("click", f), u.setAttribute("aria-pressed", String(Pt.reduced));
+  const d = (I) => {
+    I.stopPropagation(), Pt.setReduced(!Pt.reduced), u.setAttribute("aria-pressed", String(Pt.reduced));
   };
-  h.addEventListener("click", f);
-  let d = null, _ = null;
-  typeof r == "function" && (d = C("button#btn-back.ui-btn", {
+  u.addEventListener("click", d);
+  let _ = null, g = null;
+  typeof r == "function" && (_ = C("button#btn-back.ui-btn", {
     type: "button",
     "aria-label": "Revenir sur le site",
     title: "Revenir sur le site",
     html: '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M20 7 L10 16 L20 25" /></svg>'
-  }), L.ui.prepend(d), _ = (S) => {
-    S.stopPropagation(), l.onExit();
-  }, d.addEventListener("click", _));
-  const g = (S) => S.preventDefault(), m = (S) => !S.target.closest?.(".cr-lic-box") && S.preventDefault(), p = (S) => S.preventDefault();
-  document.addEventListener("gesturestart", g), document.addEventListener("touchmove", m, { passive: !1 }), document.addEventListener("contextmenu", p);
-  const x = () => {
-    l.director.stop(), o.destroy?.(), c.removeEventListener("click", u), h.removeEventListener("click", f), d && _ && d.removeEventListener("click", _), document.removeEventListener("gesturestart", g), document.removeEventListener("touchmove", m, { passive: !1 }), document.removeEventListener("contextmenu", p), L.detach(), a.innerHTML = "", document.documentElement.classList.remove("surprise-active"), document.body.classList.remove("surprise-active");
+  }), L.ui.prepend(_), g = (I) => {
+    I.stopPropagation(), c.onExit();
+  }, _.addEventListener("click", g));
+  const m = (I) => I.preventDefault(), p = (I) => !I.target.closest?.(".cr-lic-box") && I.preventDefault(), x = (I) => I.preventDefault();
+  document.addEventListener("gesturestart", m), document.addEventListener("touchmove", p, { passive: !1 }), document.addEventListener("contextmenu", x);
+  const M = () => {
+    c.director.stop(), l.destroy?.(), h.removeEventListener("click", f), u.removeEventListener("click", d), _ && g && _.removeEventListener("click", g), document.removeEventListener("gesturestart", m), document.removeEventListener("touchmove", p, { passive: !1 }), document.removeEventListener("contextmenu", x), L.detach(), a ? o.remove() : o.innerHTML = "", document.documentElement.classList.remove("surprise-active"), document.body.classList.remove("surprise-active");
   };
-  l.onExit = typeof r == "function" ? () => r(x) : null;
-  const M = a.querySelector("#loader"), v = M ? M.querySelector(".loader-pct") : null;
-  let T = 0, A = 0;
-  const w = () => {
-    v && (v.textContent = Math.round((T * 0.25 + A * 0.75) * 100) + "%");
+  c.onExit = typeof r == "function" ? () => r(M) : null;
+  const v = o.querySelector("#loader"), T = v ? v.querySelector(".loader-pct") : null;
+  let A = 0, w = 0;
+  const R = () => {
+    T && (T.textContent = Math.round((A * 0.25 + w * 0.75) * 100) + "%");
   };
   await Promise.all([
     Q6().then(() => {
-      T = 1, w();
+      A = 1, R();
     }),
-    t6((S) => {
-      A = S, w();
+    t6((I) => {
+      w = I, R();
     })
   ]), Promise.resolve().then(() => il).catch(() => {
-  }), M && (M.classList.add("gone"), setTimeout(() => M.remove(), 800)), L.ui?.classList.add("on");
-  const R = new URLSearchParams(location.search), y = e || R.get("scene");
-  return y && l.director.indexOf(y) >= 0 ? (!n && !R.has("auto") && !i ? await td() : P.unlock(), l.director.start(l.director.indexOf(y))) : l.director.start(0), { app: l, destroy: x };
+  }), v && (v.classList.add("gone"), setTimeout(() => v.remove(), 800)), L.ui?.classList.add("on");
+  const y = new URLSearchParams(location.search), S = e || y.get("scene");
+  return S && c.director.indexOf(S) >= 0 ? (!n && !y.has("auto") && !i ? await td() : P.unlock(), c.director.start(c.director.indexOf(S))) : c.director.start(0), { app: c, destroy: M };
 }
 export {
   id as mountSurprise
