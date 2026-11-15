@@ -16,7 +16,7 @@
         const link = document.createElement('link');
         link.id = 'surprise-engine-css';
         link.rel = 'stylesheet';
-        link.href = 'surprise/surprise.css?v=2';
+        link.href = 'surprise/surprise.css?v=3';
         link.onload = () => resolve();
         link.onerror = () => resolve();
         document.head.appendChild(link);
@@ -26,7 +26,7 @@
   }
 
   function ensureModule() {
-    if (!modPromise) modPromise = import('./surprise/surprise.js?v=2');
+    if (!modPromise) modPromise = import('./surprise/surprise.js?v=3');
     return modPromise;
   }
 

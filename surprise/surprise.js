@@ -17226,17 +17226,17 @@ const gr = {
   question: "Tu m’aimes ?"
 };
 function C(s, t = {}, e = []) {
-  const [n, ...i] = s.split("."), r = document.createElement(n || "div");
-  i.length && (r.className = i.join(" "));
-  for (const [a, o] of Object.entries(t || {}))
-    if (o != null)
-      if (a === "style" && typeof o == "object") Object.assign(r.style, o);
-      else if (a === "html") r.innerHTML = o;
-      else if (a === "text") r.textContent = o;
-      else if (a === "on") for (const [l, c] of Object.entries(o)) r.addEventListener(l, c);
-      else a === "class" ? r.className += (r.className ? " " : "") + o : a === "dataset" ? Object.assign(r.dataset, o) : a in r && typeof o != "string" ? r[a] = o : r.setAttribute(a, o);
-  for (const a of [].concat(e)) a != null && r.append(a);
-  return r;
+  const [n, ...i] = s.split("."), [r, a] = n.split("#"), o = document.createElement(r || "div");
+  a && (o.id = a), i.length && (o.className = i.join(" "));
+  for (const [l, c] of Object.entries(t || {}))
+    if (c != null)
+      if (l === "style" && typeof c == "object") Object.assign(o.style, c);
+      else if (l === "html") o.innerHTML = c;
+      else if (l === "text") o.textContent = c;
+      else if (l === "on") for (const [h, u] of Object.entries(c)) o.addEventListener(h, u);
+      else l === "class" ? o.className += (o.className ? " " : "") + c : l === "dataset" ? Object.assign(o.dataset, c) : l in o && typeof c != "string" ? o[l] = c : o.setAttribute(l, c);
+  for (const l of [].concat(e)) l != null && o.append(l);
+  return o;
 }
 const qf = "http://www.w3.org/2000/svg";
 function an(s, t = {}, e = []) {
@@ -20139,7 +20139,7 @@ function td() {
 async function id({ container: s = null, assetBase: t = "", sceneId: e = null, autoStart: n = !1, fromGesture: i = !1, onExit: r = null } = {}) {
   Z.config({ force3D: !0 }), t && Qf(t), document.documentElement.classList.add("surprise-active"), document.body.classList.add("surprise-active");
   let a = !1, o = s ? s.id === "app" ? s : s.querySelector("#app") : document.getElementById("app");
-  o || (o = C("div#app"), (s || document.body).append(o), a = !0), o.querySelector("#stage") || (o.innerHTML = J6), L.attach(o);
+  o || (o = C("div", { id: "app" }), (s || document.body).append(o), a = !0), o.querySelector("#stage") || (o.innerHTML = J6), L.attach(o);
   const l = new l6(o.querySelector("#fx")), c = { stage: L, quality: Pt, audio: P, fx: l, onExit: null };
   c.director = new c6(c, Z6), window.__app = c, window.gsap = Z, i && !P.ready && P.unlock();
   const h = o.querySelector("#btn-sound"), u = o.querySelector("#btn-motion"), f = (I) => {
@@ -20153,7 +20153,8 @@ async function id({ container: s = null, assetBase: t = "", sceneId: e = null, a
   };
   u.addEventListener("click", d);
   let _ = null, g = null;
-  typeof r == "function" && (_ = C("button#btn-back.ui-btn", {
+  typeof r == "function" && (_ = C("button.ui-btn", {
+    id: "btn-back",
     type: "button",
     "aria-label": "Revenir sur le site",
     title: "Revenir sur le site",
