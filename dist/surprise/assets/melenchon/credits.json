@@ -1,0 +1,37 @@
+{
+  "official-body": {
+    "license": "CC BY 4.0",
+    "artist": "jlm2017.fr",
+    "page": "https://commons.wikimedia.org/wiki/File:Jean-Luc_M%C3%A9lenchon_en_2026.png"
+  },
+  "official-face": {
+    "license": "CC BY 4.0",
+    "artist": "Thomas Bresson",
+    "page": "https://commons.wikimedia.org/wiki/File:Jean-Luc_M%C3%A9lenchon_2022_(cropped).jpg"
+  },
+  "laugh": {
+    "license": "CC BY-SA 2.0",
+    "artist": "Cancillería del Ecuador from Ecuador",
+    "page": "https://commons.wikimedia.org/wiki/File:Jean-Luc_M%C3%A9lenchon_(9301728809)_(cropped).jpg"
+  },
+  "fists": {
+    "license": "CC BY 4.0",
+    "artist": "Thomas Bresson",
+    "page": "https://commons.wikimedia.org/wiki/File:2022-01-19_21-07-11_meeting-M%C3%A9lenchon-Strasbourg_10.jpg"
+  },
+  "open-hands": {
+    "license": "CC BY-SA 2.0",
+    "artist": "Cancillería Ecuador from Ecuador",
+    "page": "https://commons.wikimedia.org/wiki/File:Jean-Luc_M%C3%A9lenchon_visita_Quito_(9301728809).jpg"
+  },
+  "point-scarf": {
+    "license": "CC BY 3.0",
+    "artist": "Pierre-Selim",
+    "page": "https://commons.wikimedia.org/wiki/File:Melenchon,_6%C3%A8me_R%C3%A9publique_-_MG_6549.jpg"
+  },
+  "sash": {
+    "license": "CC BY-SA 4.0",
+    "artist": "Adzo.1",
+    "page": "https://commons.wikimedia.org/wiki/File:M%C3%A9lenchon_contre_la_r%C3%A9forme_du_code_du_travail_23_09_2017.jpg"
+  }
+}
